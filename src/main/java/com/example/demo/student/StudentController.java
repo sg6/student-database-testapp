@@ -4,6 +4,7 @@ import com.example.demo.utils.EmptyJsonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,14 +27,29 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
+    @RequestMapping(value ="/{id}", method = RequestMethod.GET)
+    public StudentModel getStudentById(@PathVariable("id") int id) {
+        return studentService.getStudentById(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public Collection<StudentModel> deleteStudentById(@PathVariable("id") int id) {
+        return studentService.removeStudentById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public StudentModel updateStudent(@RequestBody StudentModel student) {
+        return studentService.updateStudent(student);
+    }
+
     // Clowning around
-    @GetMapping(value="/{id}")
+    @GetMapping(value="/clown/{id}")
     public ResponseEntity<StudentModel> getStudent(@PathVariable String id) {
         ++counter;
-        long studentId;
+        int studentId;
 
         try {
-            studentId = Long.parseLong(id);
+            studentId = Integer.parseInt(id);
             Date dob = new GregorianCalendar(1992, Calendar.FEBRUARY, 19).getTime();
             StudentModel student = new StudentModel(studentId, "Dave", "Days", dob);
             student.getAge();

@@ -22,4 +22,22 @@ public class StudentDao {
     public Collection<StudentModel> getAllStudents() {
         return this.students.values();
     }
+
+    public StudentModel getStudentById(int id) {
+        return this.students.get(id);
+    }
+
+    public Collection<StudentModel> removeStudentById(int id) {
+        this.students.remove(id);
+        return this.getAllStudents();
+    }
+
+    public StudentModel updateStudent(StudentModel student) {
+        StudentModel s = students.get(student.getId());
+        s.setFirstName(student.getFirstName());
+        s.setLastName(student.getLastName());
+        s.setDateOfBirth(student.getDateOfBirth());
+        students.put(student.getId(), student);
+        return student;
+    }
 }

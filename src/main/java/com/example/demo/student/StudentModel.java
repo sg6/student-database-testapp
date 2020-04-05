@@ -3,7 +3,7 @@ package com.example.demo.student;
 import java.util.Date;
 
 public class StudentModel {
-    private long id;
+    private int id;
     private String firstName;
     private String lastName;
 
@@ -18,7 +18,7 @@ public class StudentModel {
     }
 
 
-    public StudentModel(long id, String firstName, String lastName, Date dateOfBirth) {
+    public StudentModel(int id, String firstName, String lastName, Date dateOfBirth) {
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setDateOfBirth(dateOfBirth);
@@ -44,16 +44,15 @@ public class StudentModel {
     public int getAge() {
         Date now = new Date();
         long diff = now.getTime() - dateOfBirth.getTime();
-        int diffInYears = (int)Math.floor(diff / 1000 / 3600 / 24 / 365);
 
-        return diffInYears;
+        return (int)Math.floor(diff / 1000 / 3600 / 24 / 365);
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public long getId() {
+    public int getId() {
         return this.id;
     }
 }
