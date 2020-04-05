@@ -1,6 +1,5 @@
 package com.example.demo.student;
 
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class StudentModel {
@@ -52,5 +51,9 @@ public class StudentModel {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getId() {
+        return this.id;
     }
 }
